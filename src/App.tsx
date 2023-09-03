@@ -1,28 +1,26 @@
-import React from 'react';
 import './App.css';
+import { Todolist } from './components/Todolist';
 
 function App() {
-    return (
-        <div className="App">
-            <div>
-                <h3>What to learn</h3>
-                <div>
-                    <input/>
-                    <button>+</button>
-                </div>
-                <ul>
-                    <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
-                    <li><input type="checkbox" checked={true}/> <span>JS</span></li>
-                    <li><input type="checkbox" checked={false}/> <span>React</span></li>
-                </ul>
-                <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
-                </div>
-            </div>
-        </div>
-    );
+  const tasks1 = [
+    { id: 1, title: 'HTML&CSS', isDone: true },
+    { id: 2, title: 'JS', isDone: true },
+    { id: 3, title: 'ReactJS', isDone: false },
+    { id: 4, title: 'Rest API', isDone: false },
+    { id: 5, title: 'GraphQL', isDone: false },
+  ];
+  const tasks2 = [
+    { id: 1, title: 'The Matrix', isDone: true },
+    { id: 2, title: 'The Lord of the Rings', isDone: false },
+    { id: 3, title: 'The Hobbit', isDone: false },
+  ];
+
+  return (
+    <div className='App'>
+      <Todolist title='What to learn' tasks={tasks1} />
+      <Todolist title='Movies' tasks={tasks2} />
+    </div>
+  );
 }
 
 export default App;
