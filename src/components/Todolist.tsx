@@ -2,6 +2,8 @@ import { ChangeEvent } from 'react';
 import { FilterValuesType, TaskType } from '../App';
 import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
+import { Button, Checkbox, IconButton, List, ListItem } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 type TodolistPropsType = {
   todolistId: string;
@@ -46,7 +48,9 @@ export const Todolist = (props: TodolistPropsType) => {
         <strong>
           <EditableSpan title={props.title} onChange={changeTodoTitle} />
         </strong>
-        <button onClick={deleteTodoHandler}>del</button>
+        <IconButton onClick={deleteTodoHandler} color='error'>
+          <Delete />
+        </IconButton>
       </div>
 
       <br />
@@ -56,27 +60,32 @@ export const Todolist = (props: TodolistPropsType) => {
       <br />
 
       <div>
-        <button
-          className={props.filter === 'all' ? 'active-filter' : ''}
+        <Button
           onClick={onAllClickHandler}
+          variant={props.filter === 'all' ? 'contained' : 'outlined'}
+          color='primary'
         >
           All
-        </button>
-        <button
+        </Button>
+        <Button
           className={props.filter === 'active' ? 'active-filter' : ''}
           onClick={onActiveClickHandler}
+          variant={props.filter === 'active' ? 'contained' : 'outlined'}
+          color='primary'
         >
           Active
-        </button>
-        <button
+        </Button>
+        <Button
           className={props.filter === 'completed' ? 'active-filter' : ''}
           onClick={onCompletedClickHandler}
+          variant={props.filter === 'completed' ? 'contained' : 'outlined'}
+          color='primary'
         >
           Completed
-        </button>
+        </Button>
       </div>
 
-      <ul>
+      <List>
         {props.tasks.map(t => {
           const onRemoveHandler = () =>
             props.removeTask(t.id, props.todolistId);
@@ -94,21 +103,23 @@ export const Todolist = (props: TodolistPropsType) => {
           };
 
           return (
-            <li key={t.id} className={t.isDone ? 'is-done' : ''}>
-              <button onClick={onRemoveHandler}>del</button>
-              <input
-                type='checkbox'
-                checked={t.isDone}
-                onChange={onChangeStatusHandler}
-              />
+            <ListItem
+              disablePadding
+              key={t.id}
+              className={t.isDone ? 'is-done' : ''}
+            >
+              <IconButton onClick={onRemoveHandler} color='error'>
+                <Delete />
+              </IconButton>
+              <Checkbox checked={t.isDone} onChange={onChangeStatusHandler} />
               <EditableSpan
                 title={t.title}
                 onChange={onChangeTaskTitleHandler}
               />
-            </li>
+            </ListItem>
           );
         })}
-      </ul>
+      </List>
     </div>
   );
 };
