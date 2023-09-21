@@ -1,4 +1,6 @@
 import { KeyboardEvent, ChangeEvent, FC, useState } from 'react';
+import { IconButton, TextField } from '@mui/material';
+import { ControlPoint } from '@mui/icons-material';
 
 interface IProps {
   addItem: (title: string) => void;
@@ -24,20 +26,25 @@ export const AddItemForm: FC<IProps> = ({ addItem }) => {
       addItem(newTaskTitle.trim());
       setNewTaskTitle('');
     } else {
-      setError('Title is required');
+      setError('Title is required!!!');
     }
   };
 
   return (
     <div>
-      <input
+      <TextField
         value={newTaskTitle}
         onChange={onChangeHandler}
         onKeyDown={onKeyPressHandler}
         className={error ? 'error' : ''}
+        size='small'
+        label='Type your text here'
+        error={!!error}
+        helperText={error}
       />
-      <button onClick={addTask}>+</button>
-      {error && <div className='error-message'>{error}</div>}
+      <IconButton onClick={addTask} color='primary' size='medium'>
+        <ControlPoint />
+      </IconButton>
     </div>
   );
 };
