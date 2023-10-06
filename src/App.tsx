@@ -14,21 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Menu } from '@mui/icons-material';
-
-type TodolistType = {
-  id: string;
-  title: string;
-  filter: FilterValuesType;
-};
-type TasksStateType = {
-  [key: string]: Array<TaskType>;
-};
-export type TaskType = {
-  id: string;
-  title: string;
-  isDone: boolean;
-};
-export type FilterValuesType = 'all' | 'active' | 'completed';
+import { FilterValuesType, TasksStateType, TaskType, TodolistType } from './typings/types';
 
 function App() {
   const todolistId1 = v1();
