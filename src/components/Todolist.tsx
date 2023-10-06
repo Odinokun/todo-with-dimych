@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react';
-import { FilterValuesType, TaskType } from '../App';
 import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
 import { Button, Checkbox, IconButton, List, ListItem } from '@mui/material';
 import { Delete } from '@mui/icons-material';
+import { FilterValuesType, TaskType } from '../typings/types';
 
 type TodolistPropsType = {
   todolistId: string;
